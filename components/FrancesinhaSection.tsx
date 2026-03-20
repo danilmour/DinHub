@@ -31,12 +31,12 @@ export function FrancesinhaSection({ content }: FrancesinhaSectionProps) {
         />
         <div className="absolute inset-0 bg-black/45" />
 
-        <ScrollOverlay 
-          sectionId="francesinha-scroll-driver" 
-          progressStart={0} 
-          progressEnd={0.25} 
-          align="left" 
-          verticalPosition="center"
+        <ScrollOverlay
+          sectionId="francesinha-scroll-driver"
+          progressStart={0}
+          progressEnd={0.25}
+          align="left"
+          verticalPosition="top"
         >
           <p className="mb-4 font-sans text-xs uppercase tracking-[0.12em] text-amber-300">
             {content.hero.eyebrow}
