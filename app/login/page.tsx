@@ -23,14 +23,6 @@ export default function LoginPage() {
     })
   }
 
-  const handleApple = async () => {
-    setError(null)
-    await supabase.auth.signInWithOAuth({
-      provider: 'apple',
-      options: { redirectTo: `${location.origin}/auth/callback` },
-    })
-  }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
@@ -97,16 +89,6 @@ export default function LoginPage() {
                 <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
               </svg>
               Continuar com Google
-            </button>
-
-            <button
-              onClick={handleApple}
-              className="flex items-center justify-center gap-3 w-full py-2.5 px-4 bg-white/[0.06] hover:bg-white/[0.1] border border-white/[0.1] rounded-lg text-sm text-white/80 transition-colors"
-            >
-              <svg width="16" height="18" viewBox="0 0 16 18" fill="currentColor">
-                <path d="M13.173 9.497c-.02-2.134 1.745-3.163 1.824-3.214-1-1.453-2.548-1.652-3.093-1.671-1.316-.134-2.572.775-3.237.775-.665 0-1.691-.757-2.78-.737-1.43.021-2.754.833-3.489 2.112C.72 9.14 1.77 13.374 3.4 15.7c.808 1.152 1.768 2.44 3.025 2.394 1.22-.048 1.677-.778 3.15-.778 1.472 0 1.888.778 3.172.752 1.307-.022 2.133-1.17 2.934-2.327.926-1.335 1.306-2.63 1.327-2.697-.029-.013-2.54-.972-2.563-3.858l-.272.311zM10.964 3.06C11.607 2.28 12.046 1.21 11.924 0c-.936.039-2.07.625-2.739 1.4-.6.692-1.127 1.8-1.005 2.858 1.046.079 2.116-.53 2.784-1.198z"/>
-              </svg>
-              Continuar com Apple
             </button>
           </div>
 
