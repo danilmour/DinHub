@@ -1,0 +1,115 @@
+@import 'tailwindcss';
+
+/* === Brand amber scale (Warning ramp) === */
+:root {
+  --amber-100: #FEF3D9;
+  --amber-200: #FDE8B3;
+  --amber-300: #FBDA85;
+  --amber-400: #FCCB5C;
+  --amber-500: #FCAD3F;
+  --amber-600: #E8922A;
+  --amber-700: #C97420;
+  --amber-800: #9E5318;
+  --amber-900: #7A3A10;
+
+  /* === Semantic aliases === */
+  --accent: var(--amber-500);
+  --accent-hover: var(--amber-600);
+  --accent-dim: rgba(252,173,63,0.10);
+  --accent-glow: rgba(252,173,63,0.05);
+  --accent-border: rgba(252,173,63,0.25);
+  --accent-text: var(--amber-700);
+
+  /* === Dark base === */
+  --background: #080808;
+  --surface: #111111;
+  --surface-raised: #1a1a1a;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text-primary: #f5f0e8;
+  --text-secondary: #8a8070;
+  --text-tertiary: #4a4438;
+
+  /* === Functional === */
+  --green: #5dbe8a;
+  --green-dim: rgba(93,190,138,0.10);
+
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-dim: var(--accent-dim);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-border: var(--accent-border);
+  --color-accent-text: var(--accent-text);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-green: var(--green);
+  --color-green-dim: var(--green-dim);
+  --color-amber-100: var(--amber-100);
+  --color-amber-200: var(--amber-200);
+  --color-amber-300: var(--amber-300);
+  --color-amber-400: var(--amber-400);
+  --color-amber-500: var(--amber-500);
+  --color-amber-600: var(--amber-600);
+  --color-amber-700: var(--amber-700);
+  --color-amber-800: var(--amber-800);
+  --color-amber-900: var(--amber-900);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-text-primary antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* Typography utilities */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Smooth transitions for all interactive elements */
+a, button {
+  @apply cursor-pointer transition-all duration-200 ease-out;
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent-dim);
+  color: var(--text-primary);
+}
