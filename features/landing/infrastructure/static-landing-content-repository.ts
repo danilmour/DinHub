@@ -106,7 +106,7 @@ const landingPageContent: LandingPageContent = {
       },
       {
         quote: 'Acabou a confusão do grupo.',
-        author: 'Rafael',
+        author: 'Lafaete',
         role: 'Tech Lead',
       },
       {
