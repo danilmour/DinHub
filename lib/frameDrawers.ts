@@ -10,15 +10,18 @@ export function benefitsFrame(
   h: number
 ) {
   const t = frame / total // 0 → 1
+  const names = ['Ana Costa', 'Rafael Silva', 'Mariana Lopes', 'João Faria', 'Sofia Mendes', 'Pedro Rocha']
+  const revealStart = 0.18
+  const revealEnd = 0.3
+  const revealProgress = Math.max(0, Math.min((t - revealStart) / (revealEnd - revealStart), 1))
+  const visibleCount = Math.floor(revealProgress * names.length)
+  const partialAlpha = (revealProgress * names.length) - visibleCount
 
   ctx.clearRect(0, 0, w, h)
   ctx.fillStyle = '#080808'
   ctx.fillRect(0, 0, w, h)
 
   // Simulate a RSVP list filling up
-  const names = ['Ana Costa', 'Rafael Silva', 'Mariana Lopes', 'João Faria', 'Sofia Mendes', 'Pedro Rocha']
-  const visibleCount = Math.floor(t * names.length)
-  const partialAlpha = (t * names.length) - visibleCount
 
   const listX = w * 0.35
   const listStartY = h * 0.2
@@ -45,12 +48,12 @@ export function benefitsFrame(
     // Checkmark circle
     ctx.beginPath()
     ctx.arc(listX - 14, y + 4, 12, 0, Math.PI * 2)
-    
+
     if (i < visibleCount || (i === visibleCount && partialAlpha > 0.5)) {
       // Filled green circle
       ctx.fillStyle = `rgba(93,190,138,${alpha})`
       ctx.fill()
-      
+
       // White checkmark
       ctx.strokeStyle = '#080808'
       ctx.lineWidth = 2
@@ -60,7 +63,7 @@ export function benefitsFrame(
       ctx.lineTo(listX - 8, y - 1)
       ctx.stroke()
     } else {
-      ctx.strokeStyle = `rgba(74,68,56,${Math.max(alpha, 0.3)})`
+      ctx.strokeStyle = 'rgba(74,68,56,0.3)'
       ctx.lineWidth = 1.5
       ctx.stroke()
     }
@@ -68,7 +71,7 @@ export function benefitsFrame(
     // Name
     ctx.fillStyle = i < visibleCount
       ? `rgba(245,240,232,${alpha})`
-      : `rgba(74,68,56,0.4)`
+      : 'rgba(74,68,56,0.4)'
     ctx.font = `400 ${Math.min(18, w * 0.025)}px system-ui, sans-serif`
     ctx.textAlign = 'left'
     ctx.fillText(i < visibleCount ? name : '————————', listX + 12, y + 8)
@@ -80,7 +83,7 @@ export function benefitsFrame(
       ctx.beginPath()
       ctx.roundRect(badgeX, y - 8, 70, 24, 4)
       ctx.fill()
-      
+
       ctx.fillStyle = `rgba(93,190,138,${alpha})`
       ctx.font = `500 ${Math.min(12, w * 0.018)}px system-ui, sans-serif`
       ctx.fillText('Confirmado', badgeX + 8, y + 7)

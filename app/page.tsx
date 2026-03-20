@@ -1,4 +1,5 @@
 // app/page.tsx
+import { getLandingPageContent } from '@/features/landing/application/get-landing-page-content'
 import { Navbar } from '@/components/Navbar'
 import { Benefits } from '@/components/Benefits'
 import { FeaturesGrid } from '@/components/FeaturesGrid'
@@ -8,27 +9,17 @@ import { Footer } from '@/components/Footer'
 import { FrancesinhaSection } from '@/components/FrancesinhaSection'
 
 export default function HomePage() {
+  const landingPageContent = getLandingPageContent()
+
   return (
     <main className="bg-background min-h-screen">
-      <Navbar />
-      
-      {/* Hero + HowItWorks — unified Three.js scroll block */}
-      <FrancesinhaSection />
-      
-      {/* Benefits — 2D canvas scroll section */}
-      <Benefits />
-      
-      {/* Features Grid — static with Framer Motion entrance */}
-      <FeaturesGrid />
-      
-      {/* Social Proof — testimonials */}
-      <SocialProof />
-      
-      {/* Final CTA */}
-      <CtaFinal />
-      
-      {/* Footer */}
-      <Footer />
+      <Navbar content={landingPageContent.navbar} />
+      <FrancesinhaSection content={landingPageContent.francesinha} />
+      <Benefits content={landingPageContent.benefits} />
+      <FeaturesGrid content={landingPageContent.features} />
+      <SocialProof content={landingPageContent.socialProof} />
+      <CtaFinal content={landingPageContent.cta} />
+      <Footer content={landingPageContent.footer} />
     </main>
   )
 }

@@ -1,8 +1,13 @@
 // components/CtaFinal.tsx
 'use client'
 import { motion } from 'framer-motion'
+import type { CtaContent } from '@/features/landing/domain/landing-content'
 
-export function CtaFinal() {
+interface CtaFinalProps {
+  content: CtaContent
+}
+
+export function CtaFinal({ content }: CtaFinalProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center py-32 px-6 overflow-hidden">
       {/* Subtle radial gradient background */}
@@ -21,27 +26,27 @@ export function CtaFinal() {
         className="relative z-10 text-center max-w-2xl mx-auto"
       >
         <p className="text-sm text-text-secondary mb-2 font-sans">
-          Marca o próximo
+          {content.eyebrow}
         </p>
         <h2 className="font-serif text-[clamp(3rem,8vw,5rem)] text-text-primary leading-[0.95] mb-8">
-          jantar <em className="text-amber-500 italic">hoje.</em>
+          {content.title} <em className="text-amber-500 italic">{content.accentText}</em>
         </h2>
         <p className="text-text-secondary text-lg mb-10 font-sans max-w-md mx-auto leading-relaxed">
-          Testa com a tua equipa e vê como fica leve.
+          {content.body}
         </p>
 
         <div className="flex flex-col items-center gap-4">
           <a 
-            href="/app" 
+            href={content.primaryAction.href}
             className="inline-flex items-center gap-2 px-8 py-4 bg-amber-500 text-amber-900 font-medium text-base rounded-md hover:bg-amber-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            Criar jantar agora
+            {content.primaryAction.label}
           </a>
           <a 
-            href="/login" 
+            href={content.secondaryAction.href}
             className="text-xs text-text-tertiary hover:text-text-secondary underline underline-offset-4 transition-colors"
           >
-            Já tens conta? Entrar
+            {content.secondaryAction.label}
           </a>
         </div>
       </motion.div>

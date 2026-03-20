@@ -2,8 +2,13 @@
 'use client'
 import { useState } from 'react'
 import { useScrollDirection } from '@/hooks/useScrollDirection'
+import type { NavbarContent } from '@/features/landing/domain/landing-content'
 
-export function Navbar() {
+interface NavbarProps {
+  content: NavbarContent
+}
+
+export function Navbar({ content }: NavbarProps) {
   const isVisible = useScrollDirection()
   const [isHovered, setIsHovered] = useState(false)
 
@@ -18,31 +23,30 @@ export function Navbar() {
         style={{ background: 'rgba(8,8,8,0.8)' }}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <a href="/" className="font-serif text-xl text-text-primary hover:text-amber-500 transition-colors">
-            DinHub
-          </a>
-
-          {/* CTA Button */}
-          <div className="relative">
-            <a
-              href="/login"
-              className="inline-flex items-center px-5 py-2 text-sm text-text-primary border border-border rounded-md hover:border-border-hover hover:bg-accent-dim transition-all"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              Entrar
+            <a href="/" className="font-serif text-xl text-text-primary hover:text-amber-500 transition-colors">
+              {content.brandLabel}
             </a>
-            
-            {/* Hover microcopy */}
-            <span 
-              className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 text-[10px] text-text-tertiary whitespace-nowrap transition-opacity duration-200 ${
-                isHovered ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              Aceder às reservas
-            </span>
-          </div>
+
+            <div className="relative">
+              <a
+                href={content.loginAction.href}
+                className="inline-flex items-center px-5 py-2 text-sm text-text-primary border border-border rounded-md hover:border-border-hover hover:bg-accent-dim transition-all"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                {content.loginAction.label}
+              </a>
+
+              {content.loginAction.hint ? (
+                <span 
+                  className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 text-[10px] text-text-tertiary whitespace-nowrap transition-opacity duration-200 ${
+                    isHovered ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  {content.loginAction.hint}
+                </span>
+              ) : null}
+            </div>
         </div>
       </div>
     </nav>

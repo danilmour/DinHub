@@ -1,26 +1,13 @@
 // components/SocialProof.tsx
 'use client'
 import { motion } from 'framer-motion'
+import type { SocialProofContent } from '@/features/landing/domain/landing-content'
 
-const testimonials = [
-  {
-    quote: 'Agora a gente confirma de verdade.',
-    author: 'Ana',
-    role: 'Product Manager',
-  },
-  {
-    quote: 'Acabou a confusão do grupo.',
-    author: 'Rafael',
-    role: 'Tech Lead',
-  },
-  {
-    quote: 'Menos tempo organizando.',
-    author: 'Mariana',
-    role: 'Eng. Manager',
-  },
-]
+interface SocialProofProps {
+  content: SocialProofContent
+}
 
-export function SocialProof() {
+export function SocialProof({ content }: SocialProofProps) {
   return (
     <section className="py-24 bg-surface">
       <motion.div
@@ -31,11 +18,11 @@ export function SocialProof() {
         className="max-w-4xl mx-auto px-6"
       >
         <div className="flex flex-col md:flex-row items-stretch justify-center gap-8 md:gap-0">
-          {testimonials.map((testimonial, index) => (
+          {content.testimonials.map((testimonial, index) => (
             <div
-              key={index}
+              key={`${testimonial.author}-${testimonial.role}`}
               className={`flex-1 text-center px-6 md:px-8 py-6 ${
-                index < testimonials.length - 1 ? 'md:border-r md:border-border' : ''
+                index < content.testimonials.length - 1 ? 'md:border-r md:border-border' : ''
               }`}
             >
               <blockquote className="relative">

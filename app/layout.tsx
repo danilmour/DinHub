@@ -20,7 +20,7 @@ const instrumentSerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: 'DinHub — Jantar marcado.',
   description: 'Simplifica a organização de jantares de equipa com WhatsApp, RSVP tracking e Google Calendar sync.',
-  generator: 'v0.app',
+  generator: 'ARMIS Software Engineering Team',
   icons: {
     icon: [
       {
