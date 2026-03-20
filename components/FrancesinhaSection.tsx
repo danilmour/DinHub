@@ -17,7 +17,7 @@ export function FrancesinhaSection() {
         <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
-          src="/francesinha.mp4"
+          src="/francesinha-scroll.mp4"
           muted
           playsInline
           preload="auto"
